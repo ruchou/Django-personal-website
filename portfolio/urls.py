@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from .settings import DEBUG
+from .settings import *
+from django.contrib.staticfiles.urls import static
+
 
 urlpatterns = [
     url(r'^', include('mainpage.urls')), 
     url(r'^admin/', admin.site.urls),
 ]
 
+if DEBUG:
+    urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
 
